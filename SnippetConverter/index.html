@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VSCodeのSnippetにするやつ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+
+  <link rel="stylesheet" href="https://rawgit.com/cotenoni/jquery-linedtextarea/master/jquery-linedtextarea.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="https://rawgit.com/cotenoni/jquery-linedtextarea/master/jquery-linedtextarea.js"></script>
+  <script src="https://rawgit.com/julianlam/tabIndent.js/master/js/tabIndent.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="linedtextarea">
+          <textarea class="lined" id="source" rows="20" style="width: 100%;">
+        
+          </textarea>
+        </div>
+        <button onclick="convert()">convert</button>
+      </div>
+      <div class="col-6">
+        <div class="linedtextarea">
+          <textarea readonly class="lined" id="snippet" rows="20" style="width: 100%;">
+                
+            </textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $(".lined").linedtextarea(
+        { selectedLine: 1 }
+      );
+    });
+
+    function convert() {
+      var str = "";
+      $.each($("#source").val().split('\n'), function (i, elem) {
+        console.log(elem);
+        str += "\"" + elem + "\",\n";
+      });
+      $("#snippet").val(str);
+    }
+    tabIndent.config.tab = '  ';
+    tabIndent.render(document.getElementById("source"));
+
+  </script>
+</body>
+
+</html>
