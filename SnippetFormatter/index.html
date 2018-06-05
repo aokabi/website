@@ -38,6 +38,7 @@
                 
             </textarea>
         </div>
+        <button onClick="copy()">copy</button>
       </div>
     </div>
     <div class="row">
@@ -63,6 +64,15 @@
     }
     tabIndent.config.tab = '  ';
     tabIndent.render(document.getElementById("source"));
+
+    window.addEventListener("copy", function (e) {
+      e.preventDefault();
+      e.clipboardData.setData("text/plain", $("#snippet").val());
+    });
+
+    function copy() {
+      document.execCommand("copy");
+    }
 
   </script>
 </body>
