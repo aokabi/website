@@ -73,17 +73,17 @@
     });
 
     function format() {
-      var str = `"${$("#name").val()}": {\n` +
-        `  "prefix": "${$("#prefix").val()}",\n` +
+      var str = `"${$("#name").val().replace(/\\/g, '\\\\').replace(/\"/g, '\\"')}": {\n` +
+        `  "prefix": "${$("#prefix").val().replace(/\\/g, '\\\\').replace(/\"/g, '\\"')}",\n` +
         '  "body": [\n';
 
       $.each($("#source").val().split('\n'), function (i, elem) {
         console.log(elem);
-        str += '    "' + elem + '\",\n';
+        str += '    "' + elem.replace(/\\/g, '\\\\').replace(/\"/g, '\\"') + '\",\n';
       });
 
       str += '  ],\n' +
-        `  "description": "${$("#description").val()}"\n` +
+        `  "description": "${$("#description").val().replace(/\\/g, '\\\\').replace(/\"/g, '\\"')}"\n` +
         '}';
       $("#snippet").val(str);
     }
