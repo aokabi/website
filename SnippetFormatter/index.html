@@ -25,6 +25,24 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
+        <label for="name">Print to console</label>
+        <textarea class="form-control" id="name" rows="1"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="prefix">Prefix</label>
+        <textarea class="form-control" id="prefix" rows="1"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="1"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
         <div class="linedtextarea">
           <textarea class="lined" id="source" rows="20" style="width: 100%;">
         
@@ -55,11 +73,18 @@
     });
 
     function format() {
-      var str = "";
+      var str = `"${$("#name").val()}": {\n` +
+        `  "prefix": "${$("#prefix").val()}",\n` +
+        '  "body": [\n';
+
       $.each($("#source").val().split('\n'), function (i, elem) {
         console.log(elem);
-        str += "\"" + elem + "\",\n";
+        str += '    "' + elem + '\",\n';
       });
+
+      str += '  ],\n' +
+        `  "description": "${$("#description").val()}"\n` +
+        '}';
       $("#snippet").val(str);
     }
     tabIndent.config.tab = '  ';
