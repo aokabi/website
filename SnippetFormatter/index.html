@@ -30,7 +30,7 @@
         
           </textarea>
         </div>
-        <button onclick="convert()">convert</button>
+        <button onclick="format()">format</button>
       </div>
       <div class="col-6">
         <div class="linedtextarea">
@@ -42,7 +42,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <span>左側のテキストエリアにコードを書くか貼り付けて,convertボタンを押してください.</span>
+        <span>左側のテキストエリアにコードを書くか貼り付けて,formatボタンを押してください.</span>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
       );
     });
 
-    function convert() {
+    function format() {
       var str = "";
       $.each($("#source").val().split('\n'), function (i, elem) {
         console.log(elem);
